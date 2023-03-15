@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./app/models");
 const Role = db.role;
 
-db.mongoose.connect(`mongodb://127.0.0.1/JWT-Roles`, {
+db.mongoose.connect(`mongodb+srv://NyxCaelum:TNsne0xWihFwdgow@react-jwt.b2x3jy3.mongodb.net/?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
