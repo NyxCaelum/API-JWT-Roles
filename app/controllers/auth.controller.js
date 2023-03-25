@@ -18,6 +18,7 @@ exports.signup = async (req, res) => {
     email: req.body.email,
     password: hashedPassword
   });
+  
   try {
     const savedUser = await user.save();
 
@@ -38,6 +39,7 @@ exports.signup = async (req, res) => {
     }
 
     res.send({ message: "User was registered successfully!" });
+    
   } catch (err) {
     res.status(500).send({ message: err });
   }
@@ -45,7 +47,7 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.body.username })
+    const user = await User.findOne({ email: req.body.email })
       .populate("roles", "-__v");
 
     if (!user) {
