@@ -47,11 +47,11 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.body.username })
+    const user = await User.findOne({ email: req.body.email })
       .populate("roles", "-__v");
 
     if (!user) {
-      return res.status(404).send({ message: "User Not found." });
+      return res.status(404).send({ message: "Email Not found." });
     }
 
     const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
