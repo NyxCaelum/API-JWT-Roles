@@ -5,7 +5,7 @@ const User = db.user;
 const checkDuplicateUsernameOrEmail = async (req, res, next) => {
   try {
     const user = await User.findOne({
-      $or: [{ email: req.body.email }, { email: req.body.email }]
+      $or: [{ username: req.body.username }, { email: req.body.email }]
     });
     if (user) {
       return res
