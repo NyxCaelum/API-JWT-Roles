@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-    origin: "http://localhost:8081"
+    origin: "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
@@ -16,7 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./app/models");
 const Role = db.role;
 
-db.mongoose.connect(`mongodb+srv://NyxCaelum:TNsne0xWihFwdgow@react-jwt.b2x3jy3.mongodb.net/System-app`, {
+const MongoConnection = 'mongodb+srv://NyxCaelum:TNsne0xWihFwdgow@react-jwt.b2x3jy3.mongodb.net/System-app';
+// const MongoConnection = 'mongodb://127.0.0.1/JWT-Roles';
+db.mongoose.connect(`${MongoConnection}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
