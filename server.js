@@ -56,30 +56,21 @@ async function initial() {
             name: "user"
           });
           
-          newRoleU.save().then(() => {
-                  console.log("added 'user' to roles collection");
-          }).catch((err) => {
-              console.log(err)
-          })
+          newRoleU.save().then(() => console.log("added 'user' to roles collection"))
+          .catch((err) => console.log(err))
     
           const newRoleM = new Role({
               name: "moderator"
           });
     
-          newRoleM.save().then(() => {
-                  console.log("added 'moderator' to roles collection");
-          }).catch((err) => {
-              console.log(err)
-          })
+          newRoleM.save().then(() => console.log("added 'moderator' to roles collection"))
+          .catch((err) => console.log(err))
     
           const newRoleA = new Role({
               name: "admin"
           });
     
-          newRoleA.save().then(() => {
-                  console.log("added 'admin' to roles collection");
-          }).catch((err) => {
-              console.log(err)
-          })
+          newRoleA.save().then(() => console.log("added 'admin' to roles collection"))
+          .catch((err) => console.log(err))
     }
   }
