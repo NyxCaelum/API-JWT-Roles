@@ -5,14 +5,14 @@ const User = db.user;
 const Role = db.role;
 
 const verifyToken = async (req, res, next) => {
-  const token = req.headers["x-access-token"];
+  const token = req.cookies.token;
 
   if (!token) {
     return res.status(403).send({ message: "No token provided!" });
   }
 
   try {
-    const decoded = await jwt.verify(token, config.secret);
+    const decoded = jwt.verify(token, config.secret);
     req.userId = decoded.id;
     next();
   } catch (err) {

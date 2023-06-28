@@ -1,4 +1,7 @@
-exports.allAccess = (req, res) => {
+  const jwt = require("jsonwebtoken");
+  const config = require('../config/auth.config.js');
+  
+  exports.allAccess = (req, res) => {
     res.status(200).send("Public Content.");
   };
   
@@ -21,7 +24,8 @@ exports.allAccess = (req, res) => {
       return res.status(402).send({message: 'Token not provided'});
     }
     
-    const user = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+    // const buffer = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+    const user = jwt.verify(token, config.secret);
 
     res.status(200).send({ user });
   };
