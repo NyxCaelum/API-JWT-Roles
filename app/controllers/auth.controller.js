@@ -43,7 +43,6 @@ exports.signup = async (req, res) => {
 exports.signin = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email })
-      .populate("roles", "-__v");
 
     if (!user) {
       return res.status(404).send({ message: "Email Not found." });
@@ -57,14 +56,11 @@ exports.signin = async (req, res) => {
         message: "Invalid Password!"
       });
     }
-
-    const authorities = user.roles.map(role => `ROLE_${role.name.toUpperCase()}`);
     
     const token = jwt.sign({ 
       id: user._id,
       username: user.username,
       email: user.email,
-      roles: authorities,
     }, config.secret, { expiresIn: 86400 });
 
     // res.cookie('token', token).status(200).send({message: 'Authentificade successfully'})
