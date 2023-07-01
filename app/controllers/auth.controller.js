@@ -30,12 +30,7 @@ exports.signup = async (req, res) => {
       await savedUser.save();
 
     } else {
-
-      const role = await Role.findOne({ name: "user" });
-
-      savedUser.roles = [role._id];
       await savedUser.save();
-      
     }
 
     res.send({ message: "User was registered successfully!" });
