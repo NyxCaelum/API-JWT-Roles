@@ -18,7 +18,7 @@
   };
 
   exports.userData = (req, res) => {
-    const token = req.cookies.token;
+  const token = req.headers["x-access-token"];
 
     if(!token){
       return res.status(402).send({message: 'Token not provided'});
