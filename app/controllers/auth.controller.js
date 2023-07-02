@@ -63,7 +63,6 @@ exports.signin = async (req, res) => {
       email: user.email,
     }, config.secret, { expiresIn: 86400 });
 
-    // res.cookie('token', token).status(200).send({message: 'Authentificade successfully'})
     res.status(200).send({ accessToken: token });
   } catch (err) {
     res.status(500).send({ message: err });
